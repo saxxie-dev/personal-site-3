@@ -60,7 +60,7 @@ Now, back to web development! Astro is a modern static site generator that offer
 
 To create a new Astro project, you can use the following command:
 
-```bash
+```haskell
 npm create astro@latest
 ```
 
