@@ -1,0 +1,25 @@
+---
+const socials = [
+  { name: "Tiktok", href: "https://www.tiktok.com/@saxxie.dev" },
+  { name: "Bluesky", href: "https://bsky.app/profile/saxxie.dev" },
+  { name: "Youtube", href: "https://www.youtube.com/@saxxie-dev" },
+  { name: "GitHub", href: "https://github.com/saxxie-dev" },
+  { name: "Discord", href: "https://discord.gg/tkcbxFzDaJ" },
+  { name: "Substack", href: "https://saxxie.substack.com/" },
+];
+---
+
+<div class="border-y border-gray-200 dark:border-gray-800 py-4 mt-4">
+  <p class="text-center text-gray-700 dark:text-gray-300">
+    {
+      socials.map((social) => (
+        <a
+          href={social.href}
+          class="font-bold text-gray-800 dark:text-gray-300 hover:underline mx-4"
+        >
+          {social.name}
+        </a>
+      ))
+    }
+  </p>
+</div>

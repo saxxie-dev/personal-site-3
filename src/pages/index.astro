@@ -1,20 +1,35 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import SocialBar from "../components/SocialBar.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Welcome to My Site">
+<Layout title="saxxie.dev">
   <div class="text-center py-16">
-    <h1 class="text-5xl font-bold mb-4">Welcome to My Site</h1>
-    <p class="text-xl text-gray-600 dark:text-gray-400">I'm a developer, writer, and creator.</p>
+    <h1 class="text-5xl font-bold mb-4">
+      I'm So
+      <span
+        class="bg-gradient-to-r dark:from-emerald-400 dark:to-orange-300 from-emerald-700 to-orange-600 bg-clip-text text-transparent"
+        >Saxxie.dev</span
+      >
+    </h1>
+    <p class="text-xl text-gray-600 dark:text-gray-400">
+      Chronically online Software-Maker and Opinion-Haver
+    </p>
   </div>
+  <SocialBar />
 
   <section class="mt-16">
-    <h2 class="text-3xl font-bold mb-8">Latest Posts</h2>
+    <h2 class="text-3xl font-bold mb-8">Latest</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
         <h3 class="text-xl font-semibold mb-4">Getting Started with Astro</h3>
-        <p class="text-gray-600 dark:text-gray-400 mb-4">Learn how to build fast websites with Astro...</p>
-        <a href="/blog/getting-started-with-astro" class="text-primary-600 dark:text-primary-400 hover:underline">
+        <p class="text-gray-600 dark:text-gray-400 mb-4">
+          Learn how to build fast websites with Astro...
+        </p>
+        <a
+          href="/blog/getting-started-with-astro"
+          class="text-primary-600 dark:text-primary-400 hover:underline"
+        >
           Read more →
         </a>
       </article>
