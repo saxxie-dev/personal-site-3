@@ -1,11 +1,11 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import Comments from '../../components/Comments';
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Comments from "../../components/Comments";
 
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog');
-  return blogEntries.map(entry => ({
+  const blogEntries = await getCollection("blog");
+  return blogEntries.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
   }));
@@ -15,22 +15,33 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+/>
 <Layout title={entry.data.title}>
-  <article class="prose dark:prose-invert prose-primary max-w-none overflow-hidden">
+  <article
+    class="prose dark:prose-invert prose-primary max-w-none overflow-hidden"
+  >
     <header class="mb-8">
       <h1 class="text-4xl font-bold mb-2">{entry.data.title}</h1>
-      <time datetime={entry.data.date.toISOString()} class="text-sm text-gray-600 dark:text-gray-400">
-        {entry.data.date.toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        })}
+      <time
+        datetime={entry.data.date.toISOString()}
+        class="text-sm text-gray-600 dark:text-gray-400"
+      >
+        {
+          entry.data.date.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })
+        }
       </time>
     </header>
     <div class="prose dark:prose-invert max-w-none">
       <Content />
     </div>
   </article>
-  
+
   <Comments client:load />
 </Layout>
