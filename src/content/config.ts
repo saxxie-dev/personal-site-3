@@ -9,6 +9,16 @@ const blogCollection = defineCollection({
   }),
 });
 
+const mdxCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    date: z.date(),
+    excerpt: z.string(),
+  }),
+});
+
 export const collections = {
-  articles: blogCollection,
+  'articles': blogCollection,
+  'articles/mdx': mdxCollection,
 };
