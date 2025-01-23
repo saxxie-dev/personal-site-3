@@ -128,19 +128,70 @@ They are, however, ***morally*** correct.
   <div slot="left">
     To extend our base logic, we introduce a new *modality* for *moral obligation*. Don't freak out about the new vocabulary!
     
-    A *modality* is essentially "truth mode", or distinct way in which an existing expression can be true.
+    A *modality* is essentially "truth mode", or distinct way in which an existing expression can be true. 
+    Propositions with our *obligation modality* will thus be used to describe whether something *ought* to be true, independently of whether it actually is. 
+    
     Modalities are often denoted geometric symbols, such as $\Box$ or $\Diamond$; for our moral obligation modality, we'll use $\Box$. 
     Correspondingly, if you have a moral obligation to do $X$, we can express this as $\Box X$.
 
     Crucially, $\Box X$ is distinct and incomparable to $X$! If I am given $\Box \lnot[\text{kick puppies}]$ "you should not kick puppies", that (unfortunately) does not imply 
-    $\lnot[\text{kick puppies}]$ "puppies are never kicked". 
+    $\lnot[\text{kick puppies}]$ "puppies are never kicked".
+
+    This gives a somewhat infectious quality - once we've started reaching moral judgements, it's difficult to extract purely logical facts from it - instead, we'll likely push more stuff *inside* the $\Box$ modality
+    (via techniques we'll see soon) to reach more sophisticated ethical conclusions. 
   </div>
   <div slot="right">
     To extend our base type system, we introduce a new *monad* for *IO operations*.  Don't freak out about the new vocabulary! 
     
-    A *monad* is essentially a "calculation mode", or distinct way in which "values" of a type may be computed. Our IO monad will be denoted `IO`. 
+    A *monad* is essentially a "calculation mode", or distinct way in which "values" of a type may be computed. 
+    Values in our IO monad will thus specify processes for running programs that require the use of side effects. 
+    
+    Our IO monad will be denoted `IO`. 
     Correspondingly, if we have some effectful process which returns a value of type `X`, we can express this as `myProcess: IO X`.
 
-    Crucially, `IO X` is distinct and incomparable to `X`! If I am given an `IO Int` number from a user input, there is no way to extract the `Int` pure computation yielding the same number!
+    Crucially, `IO X` is distinct and incomparable to `X`! If I am given an `IO Int` - a number retrieved from a user input, there is no way to extract an `Int` - pure computation yielding the same number! 
+    
+    This gives a somewhat infectious quality - once we've started doing some `IO`, it's impossible to pull it back into the world of pure functions - instead, we have to push more stuff *inside* the `IO` 
+    (via techniques we'll see soon) to create more sophisticated effectful programs. 
+  </div>
+</SplitParagraph>
+<SplitParagraph>
+  <div slot="left">
+   
+  </div>
+  <div slot="right">
+   
+  </div>
+</SplitParagraph>
+<SplitParagraph>
+  <div slot="left">
+   
+  </div>
+  <div slot="right">
+   
+  </div>
+</SplitParagraph>
+<SplitParagraph>
+  <div slot="left">
+   
+  </div>
+  <div slot="right">
+   
+  </div>
+</SplitParagraph>
+<SplitParagraph>
+  <div slot="left">
+   
+  </div>
+  <div slot="right">
+   
+  </div>
+</SplitParagraph>
+<SplitParagraph>
+  <div slot="left">
+   
+  </div>
+  <div slot="right">
+   
   </div>
 </SplitParagraph>
