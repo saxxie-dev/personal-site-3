@@ -3,20 +3,144 @@ title: "Monads, Morally"
 date: 2025-01-09
 excerpt: "Programming with monads vs. reasoning with modalities"
 ---
+import SplitParagraph from "../../components/one-offs/SplitParagraph.astro";
+
 <div class="text-center">
 The following stories are not ***literally***, ***historically*** correct.   
 They are, however, ***morally*** correct.  
 <span class="opacity-70 text-sm">(Don't fact check me)</span>
 </div>
 
-<div class="flex flex-row w-full justify-between">
-  <div>
-    hello
-  </div><div>
-    world $e = mc^2$
+<SplitParagraph>
+  <div slot="left">
+    The year is 1739, and the brilliant philosopher David Hume has a problem. 
+    He's trying to re-derive the ancient theory of ethics and morality from a truly _rigorous_ foundation, one based on the still-developing science of _formal logic_.
+    Unfortunately, his valiant attempts all fail. **Why?**
   </div>
-</div>
+  <div slot="right">
+    The year is 1992, and the brilliant computer scientist Philip Wadler has a problem. 
+    He's trying to reinvent the practice of programming complex systems from a truly _rigorous_ foundation, one based on the still-developing study of _pure, statically-typed functional programming_.
+    Unfortunately, his valiant attempts all fail. **Why?**
+  </div>
+</SplitParagraph>
+<SplitParagraph>
+  <div slot="left">
+    Intuitively, the problem arises from the fact that morality is about things that *should* happen (you *should* not kick that puppy), while logic is about things that *are* (puppies *exist*!).
 
-# yolo
+    Consider trying to convey your ethics to a particularly pedantic toddler: 
+    <div class="pl-2 border-l-[1px] border-gray-300 dark:border-gray-700">
+      _You_: You should not kick that puppy.  
+      _Toddler_: Why?   
+      _You_: Because it's evil.  
+      _Toddler_: Why shouldn't I be evil?   
+      _You_: Because if you're evil, you'll get put in jail, and then you'll be sad.  
+      _Toddler_: Why shouldn't I want to be sad?  
+    </div>
 
-<div class="text-right">` yolo 2` $ weee $</div>
+    Our (mildly psychopathic) toddler has a good point, really. Even if we had clear-cut, uncontroversial definitions of good and evil and pleasure and pain and so on,
+    we would still have no way of reaching the conclusion that we **ought** to do any particular thing. This is known as the [Is-Ought problem](https://en.wikipedia.org/wiki/Is-ought_problem) -- that we cannot derive an "ought" from an "is".
+  </div>
+  <div slot="right">
+    Intuitively, the problem arises from the fact that practical programming is about IO (input/output) *processes* (download that suspicious `.exe`), while functions are about *calculations* (the sum of numebrs in a list).
+  
+    Consider trying to test your program against a particularly unhelpful compiler: 
+     <div class="pl-2 border-l-[1px] border-gray-300 dark:border-gray-700 text-left">
+      _You_: Test this code: `println("hello world")`. It should return `void` when it runs.  
+      _Computer_: . . . Done! The program returned `void`.  
+      _You_: Hmm. I'm not seeing anything. I guess I should [mock](https://en.wikipedia.org/wiki/Test_double) `println` to verify it was being called.  
+      _Computer_: . . . Done! I ran `fake.println("hello world")`.  
+      _You_: A good sign - but not a guarantee! Depends on how `println` and `fake.println` are related.
+    </div>
+    In general, this is a real problem! With automated tests, it can be difficult to verify that any IO-heavy code is doing its job.
+    Replacing the IO with similar but fake *pure* computations helps kick the can down the road -- we have no guarantee that our fake computations are accurately simulating the IO that should've been performed!
+  </div>
+</SplitParagraph>
+<SplitParagraph>
+  <div slot="left">
+    Let's try and make our intuition a little more rigorous. To do that we'll review the language of formal logic (in particular, the [propositional calculus](https://en.wikipedia.org/wiki/Propositional_calculus)) to see what it can and cannot do. 
+
+    An arbitrary letter, such as $A$, $B$, $X$, etc. is denoted a **proposition** - it represents a truth value.
+    On their own, most such propositions are not very interesting!
+    For example, saying "$A$" simply means "the proposition $A$ is true".
+
+    An arrow - $A \to B$ - represents an _implication_ - that $A$ **implies** $B$. 
+    This is the case if $B$ is true whenever $A$ is true. Note that if $A$ is false, then $B$ can trivially be either true _or_ false.
+    Given $A \to B$, and also knowing that $A$, we can infer that $B$ via an simple inference rule pretentiously known as [modus ponens](https://en.wikipedia.org/wiki/Modus_ponens).
+  
+    One basic way of conceptualizing the process of logical reasoning is as the composition of a bunch of implications. 
+    For example, if $A \to B$ and $B \to C$, then $A \to C$ -- given an $A$ we can infer $B$ via the first assumption, and then from $B$ we can infer $C$ via the second assumption.
+
+    Obviously, there's obviously a bit more to logic than this, but it's all we'll need for now. 
+  </div>
+  <div slot="right">
+    Let's try and make our intuition a little more rigorous. To do that we'll review the language of types and functions (in particular, the [typed lambda calculus](https://en.wikipedia.org/wiki/Typed_lambda_calculus)) to see what it can and cannot do.
+  
+    An arbitrary letter, such as `A`, `B`, `X` etc. is denoted a **type** - it represents a collection of possible values. 
+    On their own, most such types are not very interesting!
+    For example, saying "`a: A`" simply means "`a` is contained in the collection of values represented by `A`".
+
+    An arrow - `A → B` - represents the type of a _function_ going from `A` to `B`.
+    A value of this type is an algorithm which computes a value of type `B` for any possible value of type `A`. Note that if `A` is the empty type (containing no values), then such a function trivially exists for every other `B`. 
+    Given `f: A → B`, and also a value `a: A`, we can compute a value of type `f(a): B` via an simple calculation known as [function evaluation](https://en.wikipedia.org/wiki/Function_(mathematics)).
+  
+    One basic way of conceptualizing the process of programming is as the composition of a bunch of functions. 
+    For example, if `f: A → B` and `g: B → C`, then `g ∘ f: A → C` is a function as well -- given an `a: A` we can compute a value of type `g(f(a)): C`.
+
+    Obviously, there's obviously a bit more to functional programming than this, but it's all we'll need for now. 
+  </div>
+</SplitParagraph>
+<SplitParagraph>
+  <div slot="left">
+    Given this review, perhaps the limitations of pure logic with respect to morality are becoming clearer.  
+
+    Not only is there no way to _derive_ an "ought" from an "is"; there's not even a way to _express_ an "ought" in the first place! 
+    The syntax of the language simply doesn't have any constructs thst could correspond to notions of an **obligation**.
+    If everything is merely an inference about the current state of the world, that leaves no room for describing obligations of how to *change* the world.
+  </div>
+  <div slot="right">
+    Given this review, perhaps the limitations of functional programming with respect to IO are becoming clearer.  
+
+    Not only is there no way to _create_ an IO process from a pure function; there's not even a way to _express_ effectfulness in the first place!
+    The syntax of the language simply doesn't have any constructs that could correspond to notions of **IO**. 
+    If everything is merely a mapping from input values to output values, that leaves no room for functions to _actually_ be doing other things.
+
+  </div>
+</SplitParagraph>
+<SplitParagraph>
+<div slot="left">
+    Philosophers were thus presented with a choice.
+
+    Either give up on studying ethics, since it can't be perfectly embedded in basic logic, or find some way to _enrich_ the logic with an extra layer of expressiveness, one that
+    is capable of expressing moral judgements. 
+
+    Thanks to heavy lobbying from the philosophy-industrial complex, which occasionally generates nonzero profits from ethics research, philosophers decided on the latter option: enriching the base logic. 
+  </div>
+  <div slot="right">
+    Programmers were thus presented with a choice.
+
+    Either give up on writing software that *does* stuff, since it can't be perfectly embedded in lambda calculus, or find some way to _enrich_ the language with an extra layer of expressiveness, one that is capable of\
+    describing the side effects associated with running a program. 
+
+    Thanks to heavy lobbying from computer users everywhere, who occasionally enjoy running programs on physical computers, the language designers decided on the latter option: enriching the base language.
+  </div>
+</SplitParagraph>
+<SplitParagraph>
+  <div slot="left">
+    To extend our base logic, we introduce a new *modality* for *moral obligation*. Don't freak out about the new vocabulary!
+    
+    A *modality* is essentially "truth mode", or distinct way in which an existing expression can be true.
+    Modalities are often denoted geometric symbols, such as $\Box$ or $\Diamond$; for our moral obligation modality, we'll use $\Box$. 
+    Correspondingly, if you have a moral obligation to do $X$, we can express this as $\Box X$.
+
+    Crucially, $\Box X$ is distinct and incomparable to $X$! If I am given $\Box \lnot[\text{kick puppies}]$ "you should not kick puppies", that (unfortunately) does not imply 
+    $\lnot[\text{kick puppies}]$ "puppies are never kicked". 
+  </div>
+  <div slot="right">
+    To extend our base type system, we introduce a new *monad* for *IO operations*.  Don't freak out about the new vocabulary! 
+    
+    A *monad* is essentially a "calculation mode", or distinct way in which "values" of a type may be computed. Our IO monad will be denoted `IO`. 
+    Correspondingly, if we have some effectful process which returns a value of type `X`, we can express this as `myProcess: IO X`.
+
+    Crucially, `IO X` is distinct and incomparable to `X`! If I am given an `IO Int` number from a user input, there is no way to extract the `Int` pure computation yielding the same number!
+  </div>
+</SplitParagraph>

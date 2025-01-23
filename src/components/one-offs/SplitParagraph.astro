@@ -1,0 +1,18 @@
+---
+interface Props {}
+import VR from "../../components/VerticalRule.astro";
+---
+
+<style is:global>
+	.splitParagraphContainer > div {
+		flex: 1;
+	}
+	.splitParagraphContainer > div:last-child {
+		text-align: right;
+	}
+</style>
+<div class="splitParagraphContainer flex flex-row w-full justify-between">
+	<slot name="left" />
+	<VR />
+	<slot name="right" />
+</div>
