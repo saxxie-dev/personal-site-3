@@ -3,31 +3,28 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="About Me">
-  <div class="max-w-2xl mx-auto">
-    <h1 class="text-4xl font-bold mb-8">About Me</h1>
-    <p class="text-gray-600 dark:text-gray-400 mb-8">
-      Hi! You probably know me from Tiktok.
-    </p>
-
-    <h2 class="text-2xl font-bold mb-4">I like</h2>
-    <ul class="list-disc list-inside mb-8 text-gray-600 dark:text-gray-400">
-      <li>Programming languages</li>
-      <li>Type Theory</li>
-      <li>Category Theory</li>
-      <li>Math in general</li>
-      <li>Linguistics</li>
-      <li>History</li>
-      <li>Tea</li>
-    </ul>
-
-    <h2 class="text-2xl font-bold mb-4">Contact</h2>
-    <p class="text-gray-600 dark:text-gray-400 mb-4">
-      Feel free to email me at <a class="underline" href="mailto:c@saxxie.dev"
-        >c@saxxie.dev</a
-      > or reach out to me on <a
-        class="underline"
-        href="https://discord.gg/tkcbxFzDaJ">discord</a
-      >
-    </p>
+  <div class="max-w-2xl mx-auto py-12">
+    <h1 class="text-4xl font-bold mb-6">About Me</h1>
+    <div class="prose dark:prose-invert max-w-none text-lg">
+      <p>
+        Hi! I'm Saxxie. I build software and share my thoughts on programming, math, and theory.
+      </p>
+      <p>
+        Currently focusing on making complex concepts easier to understand through content and code.
+      </p>
+      
+      <h2 class="text-2xl font-bold mt-8 mb-4">Interests</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li>Programming Language Design</li>
+        <li>Type Theory</li>
+        <li>Category Theory</li>
+        <li>Compilers & Tooling</li>
+      </ul>
+      
+      <h2 class="text-2xl font-bold mt-8 mb-4">Contact</h2>
+      <p>
+        Feel free to reach out via email at <a href="mailto:c@saxxie.dev" class="text-primary-600 dark:text-primary-400 font-bold">c@saxxie.dev</a> or join my Discord!
+      </p>
+    </div>
   </div>
 </Layout>

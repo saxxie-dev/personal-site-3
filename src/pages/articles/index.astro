@@ -14,7 +14,7 @@ posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
         <article class="pb-8 border-b border-gray-200 dark:border-gray-800 last:border-0">
           <h2 class="text-2xl font-bold mb-2">
             <a
-              href={`/articles/${post.slug}`}
+              href={`/articles/${post.id}`}
               class="hover:text-primary-600 dark:hover:text-primary-400"
             >
               {post.data.title}
@@ -34,7 +34,7 @@ posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
             {post.data.excerpt}
           </p>
           <a
-            href={`/articles/${post.slug}`}
+            href={`/articles/${post.id}`}
             class="text-primary-600 dark:text-primary-400 hover:underline"
           >
             Read more →
