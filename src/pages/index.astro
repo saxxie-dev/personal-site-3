@@ -1,38 +1,45 @@
 ---
 import SocialBar from "../components/SocialBar.astro";
 import Layout from "../layouts/Layout.astro";
+import VoronoiHero from "../components/VoronoiHero.astro";
 ---
 
 <Layout title="saxxie.dev">
-  <div class="text-center py-16">
-    <h1 class="text-5xl font-bold mb-4">
-      I'm So
-      <span
-        class="bg-gradient-to-r dark:from-emerald-400 dark:to-orange-300 from-emerald-700 to-orange-600 bg-clip-text text-transparent"
-        >Saxxie.dev</span
-      >
-    </h1>
-    <p class="text-xl text-gray-600 dark:text-gray-400">
-      Chronically online Software-Maker and Opinion-Haver
-    </p>
+  <VoronoiHero />
+  <div class="-mt-8 mb-16 px-4">
+    <SocialBar />
   </div>
-  <SocialBar />
 
-  <section class="mt-16">
-    <h2 class="text-3xl font-bold mb-8">Latest</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <article class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-        <h3 class="text-xl font-semibold mb-4">Monads, Morally</h3>
-        <p class="text-gray-600 dark:text-gray-400 mb-4">
-          A curry-howard story
-        </p>
-        <a
-          href="/articles/monads-morally"
-          class="text-primary-600 dark:text-primary-400 hover:underline"
-        >
-          Read more →
-        </a>
-      </article>
-    </div>
-  </section>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <!-- Blogposts Section -->
+    <section>
+      <h2 class="text-3xl font-extralight tracking-tight mb-8 border-b border-gray-200 dark:border-gray-800 pb-2">Words</h2>
+      <div class="flex flex-col gap-6">
+        <article class="group">
+          <h3 class="text-xl font-medium mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+            <a href="/articles/monads-morally">Monads, Morally <span class="opacity-0 group-hover:opacity-100 transition-opacity">→</span></a>
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm">
+            A curry-howard story exploring structural types and logic.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section>
+      <h2 class="text-3xl font-extralight tracking-tight mb-8 border-b border-gray-200 dark:border-gray-800 pb-2">Works</h2>
+      <div class="flex flex-col gap-6">
+        <article class="block bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-100 dark:border-gray-800 hover:border-emerald-500/30 transition-colors">
+          <h3 class="text-xl font-medium mb-2">Space-Rep Learning App</h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+            An intelligent flashcard scheduler built with Solid.js and Astro.
+          </p>
+          <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+            <span>TypeScript</span> • <span>Solid</span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
 </Layout>

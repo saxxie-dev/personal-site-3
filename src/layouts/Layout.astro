@@ -18,6 +18,9 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
@@ -82,12 +85,12 @@ const { title } = Astro.props;
     </script>
   </head>
   <body
-    class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-max"
+    class="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 min-h-screen font-sans selection:bg-primary-500/30"
   >
     <header class="border-b border-gray-200 dark:border-gray-800">
       <Container>
         <nav class="flex justify-between items-center h-16">
-          <a href="/" class="text-xl font-bold">saxxie.dev</a>
+          <a href="/" class="text-2xl font-bold font-heading tracking-tight">saxxie.dev</a>
           <div class="flex items-center space-x-6">
             <a
               href="/"
